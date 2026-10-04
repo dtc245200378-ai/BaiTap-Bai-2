@@ -1,4 +1,4 @@
-/* Bước 7: Định dạng phông chữ, màu sắc, căn giữa tiêu đề */
+/* Bước 7: Định dạng font-family, font-size, color, text-align cho tiêu đề */
 h1, .story-title {
     font-family: Arial, sans-serif;
     font-size: 28px;
@@ -7,7 +7,7 @@ h1, .story-title {
     margin-top: 20px;
 }
 
-/* Bước 8: Định dạng khối mục lục (viền, màu nền, padding) & hiệu ứng hover */
+/* Bước 8: Định dạng border, background-color, padding cho khối mục lục & text-decoration, :hover */
 .toc-container {
     border: 2px solid #3498db;
     background-color: #eaf2f8;
@@ -30,7 +30,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Bước 9: Canh lề, giãn dòng và lùi đầu dòng cho thân truyện */
+/* Bước 9: Canh lề và giãn dòng line-height, text-align, text-indent cho đoạn văn thân truyện */
 p {
     line-height: 1.8;
     text-align: justify;
@@ -40,7 +40,6 @@ p {
     margin-bottom: 15px;
 }
 
-/* Định dạng ảnh đầu trang */
 .story-header {
     text-align: center;
 }
