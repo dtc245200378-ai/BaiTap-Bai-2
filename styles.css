@@ -1,32 +1,24 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
     font-family: Verdana, sans-serif;
     font-size: 0.9em;
+    margin: 0;
     padding: 10px;
-    background-color: #f8f9fa;
 }
 
 header, footer {
-    padding: 15px;
+    padding: 10px;
     color: white;
     background-color: black;
     text-align: center;
-    margin-bottom: 10px;
 }
 
 nav {
-    background-color: #333;
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
 nav ul {
-    padding: 10px;
-    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -34,47 +26,29 @@ nav ul li {
     margin-right: 15px;
 }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    color: #00bcd4;
-}
-
-/* Bố cục 2 cột: Cột trái (Section + Article), Cột phải (Aside) */
-.main-container {
+.main-content {
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.content-left {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
     gap: 10px;
 }
 
 section {
-    padding: 15px;
+    flex: 3;
+    margin: 5px 0;
+    padding: 10px;
     background-color: lightgrey;
-    border: 1px solid #ccc;
 }
 
 article {
-    padding: 15px;
+    margin: 10px 0;
+    padding: 10px;
     background-color: white;
-    border: 1px solid #ccc;
 }
 
 aside {
     flex: 1;
-    padding: 15px;
-    background-color: #e9ecef;
-    border: 1px solid #ccc;
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #e2e8f0;
 }
 
 footer {
