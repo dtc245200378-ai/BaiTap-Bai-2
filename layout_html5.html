@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tạo layout với HTML5 và CSS</title>
+    <title>Bố cục trang web với thẻ HTML5 Semantic</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         * {
@@ -52,7 +52,7 @@
             color: #1abc9c;
         }
 
-        .main-content {
+        .container {
             display: flex;
             gap: 10px;
             margin-bottom: 10px;
@@ -91,10 +91,12 @@
 </head>
 <body>
 
+    <!-- Thẻ HEADER -->
     <header>
-        <h1>HEADER - TIÊU ĐỀ TRANG WEB</h1>
+        <h1>TIÊU ĐỀ TRANG WEB (HEADER)</h1>
     </header>
 
+    <!-- Thẻ NAV -->
     <nav>
         <ul>
             <li><a href="#">Trang chủ</a></li>
@@ -104,27 +106,35 @@
         </ul>
     </nav>
 
-    <div class="main-content">
+    <!-- Khối container chứa Section & Aside -->
+    <div class="container">
+        <!-- Thẻ SECTION -->
         <section>
-            <h2>SECTION - Khu vực nội dung chính</h2>
+            <h2>Khu vực nội dung chính (SECTION)</h2>
+            
+            <!-- Thẻ ARTICLE 1 -->
             <article>
-                <h3>ARTICLE 1 - Bài viết thứ nhất</h3>
-                <p>Nội dung chi tiết bài viết thứ nhất trong phần section của trang web.</p>
+                <h3>Bài viết 1 (ARTICLE)</h3>
+                <p>Nội dung chi tiết của bài viết thứ nhất trong phần section.</p>
             </article>
+
+            <!-- Thẻ ARTICLE 2 -->
             <article>
-                <h3>ARTICLE 2 - Bài viết thứ hai</h3>
-                <p>Nội dung chi tiết bài viết thứ hai trong phần section của trang web.</p>
+                <h3>Bài viết 2 (ARTICLE)</h3>
+                <p>Nội dung chi tiết của bài viết thứ hai trong phần section.</p>
             </article>
         </section>
 
+        <!-- Thẻ ASIDE -->
         <aside>
-            <h3>ASIDE - Thanh bên</h3>
-            <p>Khu vực chứa thông tin phụ, danh mục hoặc quảng cáo liên quan.</p>
+            <h3>Thanh bên (ASIDE)</h3>
+            <p>Khu vực chứa thông tin bổ sung, liên kết phụ hoặc quảng cáo.</p>
         </aside>
     </div>
 
+    <!-- Thẻ FOOTER -->
     <footer>
-        <p>FOOTER - Chân trang &copy; 2026 CodeGym</p>
+        <p>Chân trang (FOOTER) &copy; 2026 CodeGym</p>
     </footer>
 
 </body>

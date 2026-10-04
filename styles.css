@@ -44,7 +44,7 @@ nav a:hover {
     color: #1abc9c;
 }
 
-.main-content {
+.container {
     display: flex;
     gap: 10px;
     margin-bottom: 10px;
