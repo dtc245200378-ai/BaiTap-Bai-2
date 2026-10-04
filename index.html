@@ -2,28 +2,74 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Nhúng CSS vào trang HTML</title>
-    <!-- Phần 3: External-style -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Phần 2: Internal-style -->
+    <title>Định dạng văn bản với CSS</title>
     <style>
-        .internal-style {
-            color: green;
-            font-size: 18px;
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #202122;
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: normal;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #54595d;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: justify;
+            text-indent: 35px;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .bold-text {
+            font-weight: bold;
+        }
+
+        .link-text {
+            color: #0b0080;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .link-text:hover {
+            text-decoration: underline;
+        }
+
+        sup {
+            font-size: 10px;
+            color: #0b0080;
         }
     </style>
 </head>
 <body>
 
-    <!-- Phần 1: Inline-style -->
-    <h1 style="color: blue;">Tiêu đề sử dụng Inline CSS (Màu xanh dương)</h1>
+    <h1>Việt Nam</h1>
+    <div class="subtitle">Bách khoa toàn thư mở Wikipedia</div>
 
-    <!-- Phần 2: Internal-style -->
-    <p class="internal-style">Đoạn văn sử dụng Internal CSS (Màu xanh lá)</p>
+    <p>
+        <span class="bold-text">Việt Nam</span> (tên chính thức: <span class="bold-text">Cộng hòa Xã hội chủ nghĩa Việt Nam</span>) là một quốc gia nằm ở phía đông, ở giữa Lào và Campuchia, thuộc <a href="#" class="link-text">bán đảo Đông Dương</a>, thuộc khu vực <a href="#" class="link-text">Đông Nam Á</a> thuộc <a href="#" class="link-text">châu Á</a>.
+    </p>
 
-    <!-- Phần 3: External-style -->
-    <p class="external-style">Đoạn văn sử dụng External CSS (Màu tím từ tệp style.css)</p>
+    <p>
+        Phía bắc Việt Nam giáp với <a href="#" class="link-text">Trung Quốc</a>, phía tây Việt Nam giáp với <a href="#" class="link-text">Lào</a> và <a href="#" class="link-text">Campuchia</a>, phía tây nam giáp <a href="#" class="link-text">vịnh Thái Lan</a>, phía đông và phía nam giáp <a href="#" class="link-text">biển Đông</a> và có hơn 4.000 hòn đảo,<sup>[6]</sup> bãi đá ngầm lớn nhỏ, gần và xa bờ, có vùng nội thủy, lãnh hải, vùng đặc quyền kinh tế và thềm lục địa được <span class="bold-text">Chính phủ Việt Nam</span> xác định gần gấp ba lần diện tích đất liền (khoảng trên 1 triệu km²). Trên biển Đông có quần đảo <a href="#" class="link-text">Trường Sa</a> và <a href="#" class="link-text">Hoàng Sa</a> được Việt Nam tuyên bố chủ quyền nhưng đang trong vòng tranh chấp với các quốc gia <a href="#" class="link-text">Đài Loan</a>, <a href="#" class="link-text">Trung Quốc</a>, <a href="#" class="link-text">Malaysia</a> và <a href="#" class="link-text">Philippines</a>.
+    </p>
+
+    <p>
+        Việt Nam đã thiết lập mối quan hệ ngoại giao với 178 quốc gia, quan hệ kinh tế – thương mại – đầu tư với trên 224 quốc gia và vùng lãnh thổ, là thành viên <a href="#" class="link-text">Liên Hợp Quốc</a>, <a href="#" class="link-text">ASEAN</a>, <a href="#" class="link-text">ASEM</a>, <a href="#" class="link-text">APEC</a>, <a href="#" class="link-text">WTO</a>, <a href="#" class="link-text">Tổ chức quốc tế Pháp ngữ</a>, <a href="#" class="link-text">Phong trào không liên kết</a>, <a href="#" class="link-text">UNESCO</a> và nhiều tổ chức quốc tế, khu vực khác.<sup>[7]</sup> Kể từ năm 2000 Việt Nam là một trong những nước có mức tăng trưởng kinh tế nhanh nhất thế giới,<sup>[8]</sup> tuy nhiên tốc độ tăng trưởng chậm lại trong những năm sau. Việc đổi mới kinh tế thành công đã dẫn đường cho Việt Nam trở thành thành viên của <a href="#" class="link-text">Tổ chức Thương mại Thế giới</a> vào năm 2007. Mặc dù đã có nhiều nỗ lực cải cách kinh tế – xã hội, Việt Nam vẫn còn gặp phải nhiều vấn đề tiêu cực như tỷ lệ hộ nghèo còn cao, <a href="#" class="link-text">bất bình đẳng về thu nhập</a> cao, dịch vụ chăm sóc sức khỏe kém và tình trạng bất bình đẳng giới tính còn nhiều.
+    </p>
 
 </body>
 </html>
