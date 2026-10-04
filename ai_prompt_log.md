@@ -1,13 +1,13 @@
-# Nhật ký Tương tác AI (AI Prompt Log) - Chuyên đề Over-Indexing & Storage
+# Nhật Ký Tương Tác AI (AI Prompt Log)
 
-## 1. Prompt về Tác hại của Index trên cột TEXT và BOOLEAN
-- **User**: Trong MySQL, nếu tôi tạo Index trên một cột chứa văn bản dài (TEXT) và một cột kiểu BOOLEAN (0 và 1), điều này gây hại như thế nào đến RAM, Disk và Query Optimizer?
-- **AI Summary**: Index trên cột `TEXT` gây phình to dung lượng đĩa và RAM. Cột `BOOLEAN` có Cardinality cực thấp (chỉ 2 giá trị), MySQL Optimizer sẽ bỏ qua Index này và ưu tiên Full Table Scan. Do đó, duy trì cây B-Tree chỉ làm chậm thao tác `INSERT/UPDATE` mà không mang lại lợi ích cho truy vấn.
+## Prompt 1: Phân tích nguyên nhân lỗi Layout Legacy
+- **Nội dung:** "Tại sao việc thiết lập Navbar bằng `grid-template-columns: 200px 600px 200px` lại làm giao diện bị vỡ khi đổi sang từ tiếng Đức dài hơn? Phương án thay thế bằng Flexbox là gì?"
+- **Kết quả thu được:** AI giải thích nguyên nhân cột cố định `600px` gây tràn viền và hướng dẫn chuyển sang Flexbox với `justify-content: space-between; gap: 20px; flex-wrap: wrap`.
 
-## 2. Prompt về Lý do Query Optimizer bỏ qua Index Cardinality thấp
-- **User**: Tại sao khi truy vấn SELECT * FROM Posts WHERE is_visible = 1 trên một bảng có hàng triệu dòng (với 99% bài viết visible = 1), MySQL lại chọn Full Table Scan thay vì dùng Index idx_is_visible?
-- **AI Summary**: Khi tỷ lệ bản ghi thỏa mãn điều kiện quá cao (>20-30%), chi phí duyệt cây Index rồi thực hiện Random I/O để tìm về dữ liệu gốc cao hơn rất nhiều so với việc quét liên tục (Sequential I/O) toàn bộ bảng.
+## Prompt 2: Tối ưu Bento Box với CSS Grid
+- **Nội dung:** "Hãy cung cấp mã CSS Grid tạo layout Bento Box phẳng (không có thẻ .column lồng nhau) cho 5 widget, trong đó Widget A chiếm 2 hàng và 2 cột."
+- **Kết quả thu được:** Sử dụng `grid-template-columns: repeat(3, 1fr)` kết hợp `grid-column: span 2` và `grid-row: span 2`.
 
-## 3. Prompt về Đo lường dung lượng bằng information_schema
-- **User**: Hãy cho tôi xem truy vấn SQL sử dụng information_schema.TABLES để in ra kích thước Data và Index của bảng Posts tính theo MB.
-- **AI Summary**: Trích xuất `data_length` và `index_length` từ `information_schema.TABLES` chia cho `1024 * 1024` để quy đổi ra Megabyte.
+## Prompt 3: Tìm hiểu thuộc tính `gap` và Bootstrap Grid
+- **Nội dung:** "Thuộc tính `gap` có điểm gì vượt trội so với việc dùng `margin` thủ công trong Flexbox/Grid? Khi nào nên chọn Bootstrap Grid 12 cột cho Pricing Card?"
+- **Kết quả thu được:** Giúp loại bỏ khoảng cách thừa ở phần tử đầu/cuối và tận dụng lớp `row g-4 col-12 col-md-4` để triển khai nhanh khu vực Bảng giá mà không cần viết media query thủ công.
