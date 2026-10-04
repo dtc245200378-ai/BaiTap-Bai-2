@@ -1,36 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Nhúng CSS vào trang HTML</title>
+    <!-- Phần 3: External-style -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Phần 2: Internal-style -->
     <style>
-        h1 {
-            color: blue;
-            font-family: Tahoma;
-            font-size: 200%;
-        }
-
-        p {
-            color: red;
-            font-family: Arial;
-            font-size: 120%;
-            border: 1px solid grey;
-            padding: 10px;
-        }
-
-        #element1 {
-            color: blue;
+        .internal-style {
+            color: green;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Đây là đề mục</h1>
+    <!-- Phần 1: Inline-style -->
+    <h1 style="color: blue;">Tiêu đề sử dụng Inline CSS (Màu xanh dương)</h1>
 
-    <p>Đây là đoạn văn bản.</p>
-    <p>Đây là đoạn văn bản.</p>
-    <p>Đây là đoạn văn bản.</p>
-    <p id="element1">Đoạn văn bản có thuộc tính id</p>
+    <!-- Phần 2: Internal-style -->
+    <p class="internal-style">Đoạn văn sử dụng Internal CSS (Màu xanh lá)</p>
+
+    <!-- Phần 3: External-style -->
+    <p class="external-style">Đoạn văn sử dụng External CSS (Màu tím từ tệp style.css)</p>
 
 </body>
 </html>
