@@ -1,51 +1,40 @@
-/* Bước 7: Định dạng font-family, font-size, color, text-align cho tiêu đề */
-h1, .story-title {
-    font-family: Arial, sans-serif;
-    font-size: 28px;
-    color: #2c3e50;
-    text-align: center;
-    margin-top: 20px;
+body {
+    font-family: Arial;
 }
 
-/* Bước 8: Định dạng border, background-color, padding cho khối mục lục & text-decoration, :hover */
-.toc-container {
-    border: 2px solid #3498db;
-    background-color: #eaf2f8;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 25px;
+#menu, #menu ul, #menu li {
+    padding: 0;
+    margin: 0;
 }
 
-.toc-container h5 {
-    margin: 8px 0;
+#menu li {
+    list-style: none;
+    position: relative;
+    width: 140px;
+    height: 30px;
+    padding: 0 20px;
+    background-color: black;
+    line-height: 30px;
+    cursor: pointer;
 }
 
-a {
-    color: #2980b9;
+#menu li a {
     text-decoration: none;
+    color: white;
+    display: block;
 }
 
-a:hover {
-    color: #e74c3c;
-    text-decoration: underline;
+#menu li:hover {
+    background-color: red;
 }
 
-/* Bước 9: Canh lề và giãn dòng line-height, text-align, text-indent cho đoạn văn thân truyện */
-p {
-    line-height: 1.8;
-    text-align: justify;
-    text-indent: 30px;
-    font-size: 16px;
-    color: #333333;
-    margin-bottom: 15px;
+#menu ul ul {
+    position: absolute;
+    top: 0;
+    left: 180px;
+    visibility: hidden;
 }
 
-.story-header {
-    text-align: center;
-}
-
-.story-header img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
+#menu ul li:hover ul {
+    visibility: visible;
 }
