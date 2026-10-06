@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Chronicle</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* CSS GRID CHO MOSAIC GALLERY */
+        .mosaic-gallery {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+            /* Mặc định trên Mobile: xếp chồng 1 cột */
+            grid-template-columns: 1fr; 
+        }
+
+        .photo-main, .photo-sub-1, .photo-sub-2 {
+            border-radius: 8px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .photo-main { background: #ff9999; }
+        .photo-sub-1 { background: #99ccff; }
+        .photo-sub-2 { background: #99ff99; }
+
+        /* Breakpoint cho Tablet/Desktop */
+        @media (min-width: 768px) {
+            .mosaic-gallery {
+                grid-template-columns: 2fr 1fr; /* Cột trái to gấp đôi cột phải */
+                grid-template-rows: 200px 200px;
+                grid-template-areas: 
+                    "main sub1"
+                    "main sub2";
+            }
+            .photo-main { grid-area: main; }
+            .photo-sub-1 { grid-area: sub1; }
+            .photo-sub-2 { grid-area: sub2; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        
+        <!-- VÙNG 1: AUTHOR INFO (Dùng Flexbox của Bootstrap) -->
+        <div class="author-section d-flex flex-wrap align-items-center justify-content-between border-bottom pb-3 mb-4 gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <div class="author-avatar rounded-circle bg-secondary" style="width: 60px; height: 60px;"></div>
+                <div>
+                    <h5 class="mb-0 fw-bold">Jane Doe</h5>
+                    <small class="text-muted">Published on Oct 25, 2026</small>
+                </div>
+            </div>
+            <div class="share-buttons d-flex gap-2">
+                <button class="btn btn-primary btn-sm">Share Facebook</button>
+                <button class="btn btn-info btn-sm text-white">Tweet</button>
+            </div>
+        </div>
+
+        <!-- VÙNG 2: MOSAIC GALLERY (Dùng CSS Grid) -->
+        <div class="mosaic-gallery">
+            <div class="photo-main">Main Photo</div>
+            <div class="photo-sub-1">Sub Photo 1</div>
+            <div class="photo-sub-2">Sub Photo 2</div>
+        </div>
+
+        <p class="mb-5 line-height-lg">Đây là nội dung bài báo. Nhờ sử dụng CSS Grid, Gallery ở trên tự động đẩy nội dung này xuống một cách mượt mà trên mobile mà không còn hiện tượng đè lấn thảm họa do absolute positioning gây ra nữa.</p>
+
+        <!-- VÙNG 3: RECOMMENDED ARTICLES (Dùng Bootstrap Grid System) -->
+        <h3 class="mb-3">Recommended Articles</h3>
+        <div class="row g-3 mb-5">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 bg-light border-0 shadow-sm p-3">Article 1</div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 bg-light border-0 shadow-sm p-3">Article 2</div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 bg-light border-0 shadow-sm p-3">Article 3</div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 bg-light border-0 shadow-sm p-3">Article 4</div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
