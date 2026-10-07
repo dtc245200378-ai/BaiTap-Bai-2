@@ -12,7 +12,7 @@ import java.util.List;
 public class UserDAO implements IUserDAO {
     private String jdbcURL = "jdbc:mysql://localhost:3306/demo?useSSL=false&allowPublicKeyRetrieval=true";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "password"; 
+    private String jdbcPassword = "password";
 
     private static final String INSERT_USERS_SQL = "INSERT INTO users (name, email, country) VALUES (?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "SELECT id, name, email, country FROM users WHERE id = ?;";
@@ -51,7 +51,6 @@ public class UserDAO implements IUserDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
