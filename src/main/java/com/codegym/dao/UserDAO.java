@@ -282,13 +282,52 @@ public class UserDAO implements IUserDAO {
             psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
             psInsert.execute();
 
-            // Cố tình tạo lỗi không gán tham số index 1
             psUpdate.setBigDecimal(2, new BigDecimal(999.99));
             psUpdate.setString(2, "Quynh");
             psUpdate.execute();
 
         } catch (Exception e) {
             System.out.println("Đã bắt được lỗi trong quá trình thực thi SQL:");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void insertUpdateUseTransaction() {
+        try (Connection conn = getConnection();
+             Statement statement = conn.createStatement();
+             PreparedStatement psInsert = conn.prepareStatement(SQL_INSERT);
+             PreparedStatement psUpdate = conn.prepareStatement(SQL_UPDATE)) {
+
+            statement.execute(SQL_TABLE_DROP);
+            statement.execute(SQL_TABLE_CREATE);
+
+            // 1. Tắt chế độ AutoCommit
+            conn.setAutoCommit(false);
+
+            // 2. Chèn dữ liệu
+            psInsert.setString(1, "Quynh");
+            psInsert.setBigDecimal(2, new BigDecimal(10));
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psInsert.execute();
+
+            psInsert.setString(1, "Ngan");
+            psInsert.setBigDecimal(2, new BigDecimal(20));
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psInsert.execute();
+
+            // 3. Cập nhật dữ liệu (Đã sửa index thành 1 chuẩn xác)
+            psUpdate.setBigDecimal(1, new BigDecimal(999.99));
+            psUpdate.setString(2, "Quynh");
+            psUpdate.execute();
+
+            // 4. Commit toàn bộ giao dịch thành công
+            conn.commit();
+            conn.setAutoCommit(true);
+
+        } catch (Exception e) {
+            System.out.println("Lỗi xảy ra, Transaction sẽ tự động huỷ bỏ (rollback) khi đóng kết nối!");
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
