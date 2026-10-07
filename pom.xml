@@ -14,5 +14,6 @@
         <module>quadratic-equation-lib</module>
         <module>quadratic-equation-app</module>
         <module>inotes-app</module>
+        <module>product-management-app</module>
     </modules>
 </project>
