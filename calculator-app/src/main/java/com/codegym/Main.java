@@ -11,8 +11,6 @@ public class Main {
         
         try {
             System.out.println("Thương 2 số (10, 5): " + Calculator.divide(10, 5));
-            // Cố tình chia cho 0 để test Exception
-            // System.out.println("Thương 2 số (10, 0): " + Calculator.divide(10, 0));
         } catch (NoSuchAlgorithmException e) {
             System.err.println("Lỗi thuật toán: Không thể chia cho 0!");
             e.printStackTrace();
