@@ -3,25 +3,25 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Thêm Mới User</title>
+    <title>Thêm mới User</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 30px; background-color: #f8fafc; }
-        .container { width: 50%; max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h2 { color: #1b2a7a; text-align: center; }
+        .form-card { width: 450px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #1b2a7a; margin-bottom: 20px; }
         .form-group { margin-bottom: 15px; }
-        label { font-weight: bold; display: block; margin-bottom: 5px; color: #333; }
-        input[type="text"], input[type="email"] { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-        .btn { padding: 10px 15px; background-color: #27ae60; color: white; border: none; cursor: pointer; border-radius: 4px; font-weight: bold; width: 100%; margin-top: 10px; }
-        .btn:hover { background-color: #219150; }
-        a { display: block; text-align: center; margin-top: 15px; color: #1b2a7a; text-decoration: none; font-weight: bold; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input[type="text"], input[type="email"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .checkbox-group { display: flex; gap: 15px; margin-top: 8px; flex-wrap: wrap; }
+        .btn-submit { width: 100%; padding: 10px; background-color: #27ae60; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-back { display: block; text-align: center; margin-top: 15px; color: #7f8c8d; text-decoration: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Thêm Mới User</h2>
+    <div class="form-card">
+        <h2>Thêm Mới Người Dùng</h2>
         <form action="${pageContext.request.contextPath}/users?action=create" method="post">
             <div class="form-group">
-                <label>Tên đầy đủ:</label>
+                <label>Tên người dùng:</label>
                 <input type="text" name="name" required />
             </div>
             <div class="form-group">
@@ -32,9 +32,18 @@
                 <label>Quốc gia:</label>
                 <input type="text" name="country" required />
             </div>
-            <button type="submit" class="btn">Lưu thông tin</button>
+            <div class="form-group">
+                <label>Quyền hạn (Permissions):</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="permissions" value="1"> Thêm (Add)</label>
+                    <label><input type="checkbox" name="permissions" value="2"> Sửa (Edit)</label>
+                    <label><input type="checkbox" name="permissions" value="3"> Xoá (Delete)</label>
+                    <label><input type="checkbox" name="permissions" value="4"> Xem (View)</label>
+                </div>
+            </div>
+            <button type="submit" class="btn-submit">Lưu thông tin</button>
+            <a href="${pageContext.request.contextPath}/users" class="btn-back">Quay lại danh sách</a>
         </form>
-        <a href="${pageContext.request.contextPath}/users">Quay lại danh sách</a>
     </div>
 </body>
 </html>
