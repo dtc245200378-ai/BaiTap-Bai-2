@@ -1,6 +1,7 @@
 package com.codegym.dao;
 
 import com.codegym.model.User;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IUserDAO {
@@ -11,4 +12,8 @@ public interface IUserDAO {
     public boolean updateUser(User user) throws Exception;
     public List<User> selectUsersByCountry(String country);
     public List<User> sortByName();
+
+    // Phương thức gọi Stored Procedures
+    public User getUserById(int id);
+    public void insertUserStore(User user) throws SQLException;
 }
