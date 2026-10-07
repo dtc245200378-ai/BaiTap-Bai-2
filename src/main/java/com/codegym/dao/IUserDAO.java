@@ -15,7 +15,8 @@ public interface IUserDAO {
 
     public User getUserById(int id);
     public void insertUserStore(User user) throws SQLException;
-
-    // Phương thức Transaction
     public void addUserTransaction(User user, int[] permissionIds) throws SQLException;
+
+    // Chữ ký phương thức thực thi không dùng Transaction
+    public void insertUpdateWithoutTransaction() throws SQLException;
 }

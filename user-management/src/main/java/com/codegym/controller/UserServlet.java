@@ -68,6 +68,9 @@ public class UserServlet extends HttpServlet {
                 case "sort":
                     sortByName(request, response);
                     break;
+                case "test-without-tran":
+                    testWithoutTran(request, response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
@@ -75,6 +78,11 @@ public class UserServlet extends HttpServlet {
         } catch (Exception ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void testWithoutTran(HttpServletRequest request, HttpServletResponse response) {
+        userDAO.insertUpdateWithoutTransaction();
+        System.out.println("Đã chạy xong hàm testWithoutTran. Hãy kiểm tra database!");
     }
 
     private void listUser(HttpServletRequest request, HttpServletResponse response)
