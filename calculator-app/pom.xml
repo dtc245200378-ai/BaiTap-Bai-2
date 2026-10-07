@@ -14,6 +14,7 @@
     </properties>
 
     <dependencies>
+        <!-- Khai báo thư viện jar lấy từ thư mục lib cục bộ -->
         <dependency>
             <groupId>com.codegym</groupId>
             <artifactId>math-lib</artifactId>
