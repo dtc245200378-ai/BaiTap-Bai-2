@@ -80,7 +80,6 @@ public class UserDAO implements IUserDAO {
         return user;
     }
 
-    // 1. Gọi Stored Procedure cho chức năng hiển thị danh sách users
     @Override
     public List<User> selectAllUsers() {
         List<User> users = new ArrayList<>();
@@ -101,7 +100,6 @@ public class UserDAO implements IUserDAO {
         return users;
     }
 
-    // 2. Gọi Stored Procedure cho chức năng xóa user
     @Override
     public boolean deleteUser(int id) throws Exception {
         boolean rowDeleted = false;
@@ -116,7 +114,6 @@ public class UserDAO implements IUserDAO {
         return rowDeleted;
     }
 
-    // 3. Gọi Stored Procedure cho chức năng sửa thông tin user
     @Override
     public boolean updateUser(User user) throws Exception {
         boolean rowUpdated = false;
@@ -210,6 +207,9 @@ public class UserDAO implements IUserDAO {
         }
     }
 
+    // =========================================================================
+    // PHƯƠNG THỨC LUYỆN TẬP TRANSACTION (commit() & rollback())
+    // =========================================================================
     @Override
     public void addUserTransaction(User user, int[] permissionIds) throws SQLException {
         Connection connection = null;
@@ -219,8 +219,11 @@ public class UserDAO implements IUserDAO {
 
         try {
             connection = getConnection();
+            
+            // 1. Tắt AutoCommit để quản lý Transaction thủ công
             connection.setAutoCommit(false);
 
+            // 2. Chèn thông tin người dùng vào bảng users
             String insertUserSql = "INSERT INTO users (name, email, country) VALUES (?, ?, ?)";
             pstmtUser = connection.prepareStatement(insertUserSql, Statement.RETURN_GENERATED_KEYS);
             pstmtUser.setString(1, user.getName());
@@ -228,12 +231,14 @@ public class UserDAO implements IUserDAO {
             pstmtUser.setString(3, user.getCountry());
             pstmtUser.executeUpdate();
 
+            // Lấy ID vừa được tạo tự động
             rs = pstmtUser.getGeneratedKeys();
             int userId = 0;
             if (rs.next()) {
                 userId = rs.getInt(1);
             }
 
+            // 3. Chèn các quyền tương ứng vào bảng user_permission
             if (permissionIds != null && permissionIds.length > 0) {
                 String insertPermissionSql = "INSERT INTO user_permission (user_id, permission_id) VALUES (?, ?)";
                 pstmtAssignment = connection.prepareStatement(insertPermissionSql);
@@ -245,14 +250,16 @@ public class UserDAO implements IUserDAO {
                 }
             }
 
+            // 4. Nếu tất cả các câu lệnh SQL trên thực thi thành công -> COMMIT
             connection.commit();
-            System.out.println("Transaction committed successfully!");
+            System.out.println("Transaction committed successfully! User and permissions added.");
 
         } catch (SQLException e) {
+            // 5. Nếu xảy ra bất kỳ lỗi SQL nào trong quá trình thực thi -> ROLLBACK
             try {
                 if (connection != null) {
                     connection.rollback();
-                    System.out.println("Transaction rolled back!");
+                    System.out.println("Transaction rolled back successfully! No changes saved to DB.");
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();

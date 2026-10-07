@@ -117,7 +117,7 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
+            throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         User user = userDAO.selectUser(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/delete.jsp");
