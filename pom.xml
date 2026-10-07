@@ -13,5 +13,6 @@
         <module>calculator-app</module>
         <module>quadratic-equation-lib</module>
         <module>quadratic-equation-app</module>
+        <module>inotes-app</module>
     </modules>
 </project>
