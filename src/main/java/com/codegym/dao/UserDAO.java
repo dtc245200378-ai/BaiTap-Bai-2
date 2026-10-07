@@ -21,9 +21,6 @@ public class UserDAO implements IUserDAO {
 
     private static final String INSERT_USERS_SQL = "INSERT INTO users (name, email, country) VALUES (?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "SELECT id, name, email, country FROM users WHERE id = ?;";
-    private static final String SELECT_ALL_USERS = "SELECT * FROM users;";
-    private static final String DELETE_USERS_SQL = "DELETE FROM users WHERE id = ?;";
-    private static final String UPDATE_USERS_SQL = "UPDATE users SET name = ?, email = ?, country = ? WHERE id = ?;";
     private static final String SEARCH_USERS_BY_COUNTRY = "SELECT * FROM users WHERE country LIKE ?;";
     private static final String SORT_USERS_BY_NAME = "SELECT * FROM users ORDER BY name ASC;";
 
@@ -83,12 +80,14 @@ public class UserDAO implements IUserDAO {
         return user;
     }
 
+    // 1. Gọi Stored Procedure cho chức năng hiển thị danh sách users
     @Override
     public List<User> selectAllUsers() {
         List<User> users = new ArrayList<>();
+        String query = "{CALL select_all_users()}";
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS)) {
-            ResultSet rs = preparedStatement.executeQuery();
+             CallableStatement callableStatement = connection.prepareCall(query)) {
+            ResultSet rs = callableStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
@@ -102,27 +101,35 @@ public class UserDAO implements IUserDAO {
         return users;
     }
 
+    // 2. Gọi Stored Procedure cho chức năng xóa user
     @Override
     public boolean deleteUser(int id) throws Exception {
-        boolean rowDeleted;
+        boolean rowDeleted = false;
+        String query = "{CALL delete_user(?)}";
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL)) {
-            statement.setInt(1, id);
-            rowDeleted = statement.executeUpdate() > 0;
+             CallableStatement callableStatement = connection.prepareCall(query)) {
+            callableStatement.setInt(1, id);
+            rowDeleted = callableStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return rowDeleted;
     }
 
+    // 3. Gọi Stored Procedure cho chức năng sửa thông tin user
     @Override
     public boolean updateUser(User user) throws Exception {
-        boolean rowUpdated;
+        boolean rowUpdated = false;
+        String query = "{CALL update_user(?, ?, ?, ?)}";
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL)) {
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getEmail());
-            statement.setString(3, user.getCountry());
-            statement.setInt(4, user.getId());
-            rowUpdated = statement.executeUpdate() > 0;
+             CallableStatement callableStatement = connection.prepareCall(query)) {
+            callableStatement.setInt(1, user.getId());
+            callableStatement.setString(2, user.getName());
+            callableStatement.setString(3, user.getEmail());
+            callableStatement.setString(4, user.getCountry());
+            rowUpdated = callableStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return rowUpdated;
     }
@@ -302,10 +309,8 @@ public class UserDAO implements IUserDAO {
             statement.execute(SQL_TABLE_DROP);
             statement.execute(SQL_TABLE_CREATE);
 
-            // 1. Tắt chế độ AutoCommit
             conn.setAutoCommit(false);
 
-            // 2. Chèn dữ liệu
             psInsert.setString(1, "Quynh");
             psInsert.setBigDecimal(2, new BigDecimal(10));
             psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
@@ -316,12 +321,10 @@ public class UserDAO implements IUserDAO {
             psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
             psInsert.execute();
 
-            // 3. Cập nhật dữ liệu (Đã sửa index thành 1 chuẩn xác)
             psUpdate.setBigDecimal(1, new BigDecimal(999.99));
             psUpdate.setString(2, "Quynh");
             psUpdate.execute();
 
-            // 4. Commit toàn bộ giao dịch thành công
             conn.commit();
             conn.setAutoCommit(true);
 
